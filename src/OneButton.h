@@ -28,11 +28,11 @@
 
 // ----- Callback function types -----
 
-extern "C" {
-typedef void (*callbackFunction)(void);
-typedef void (*parameterizedCallbackFunction)(void *);
+extern "C"
+{
+  typedef void (*callbackFunction)(void);
+  typedef void (*parameterizedCallbackFunction)(void *);
 }
-
 
 class OneButton
 {
@@ -71,20 +71,21 @@ public:
    */
   void attachClick(callbackFunction newFunction);
   void attachClick(parameterizedCallbackFunction newFunction, void *parameter);
-
+  void detachClick();
   /**
    * Attach an event to be called after a double click is detected.
    * @param newFunction This function will be called when the event has been detected.
    */
   void attachDoubleClick(callbackFunction newFunction);
   void attachDoubleClick(parameterizedCallbackFunction newFunction, void *parameter);
-
+  void detachDoubleClick();
   /**
    * Attach an event to be called after a multi click is detected.
    * @param newFunction This function will be called when the event has been detected.
    */
   void attachMultiClick(callbackFunction newFunction);
   void attachMultiClick(parameterizedCallbackFunction newFunction, void *parameter);
+  void detachMultiClick();
 
   /**
    * Attach an event to fire when the button is pressed and held down.
@@ -92,6 +93,7 @@ public:
    */
   void attachLongPressStart(callbackFunction newFunction);
   void attachLongPressStart(parameterizedCallbackFunction newFunction, void *parameter);
+  void detachLongPressStart();
 
   /**
    * Attach an event to fire as soon as the button is released after a long press.
@@ -99,6 +101,7 @@ public:
    */
   void attachLongPressStop(callbackFunction newFunction);
   void attachLongPressStop(parameterizedCallbackFunction newFunction, void *parameter);
+  void detachLongPressStop();
 
   /**
    * Attach an event to fire periodically while the button is held down.
@@ -106,6 +109,7 @@ public:
    */
   void attachDuringLongPress(callbackFunction newFunction);
   void attachDuringLongPress(parameterizedCallbackFunction newFunction, void *parameter);
+  void detachDuringLongPress();
 
   // ----- State machine functions -----
 
@@ -115,7 +119,6 @@ public:
    */
   void tick(void);
 
-
   /**
    * @brief Call this function every time the input level has changed.
    * Using this function no digital input pin is checked because the current
@@ -123,18 +126,15 @@ public:
    */
   void tick(bool level);
 
-
   /**
    * Reset the button state machine.
    */
   void reset(void);
 
-
   /*
    * return number of clicks in any case: single or multiple clicks
    */
   int getNumberClicks(void);
-
 
   /**
    * @return true if we are currently handling button press flow
@@ -146,7 +146,6 @@ public:
    * @return true when a long press is detected
    */
   bool isLongPressed() const { return _state == OCS_PRESS; };
-
 
 private:
   int _pin;                         // hardware pin number.
@@ -186,7 +185,8 @@ private:
   // tick function is called.
 
   // define FiniteStateMachine
-  enum stateMachine_t : int {
+  enum stateMachine_t : int
+  {
     OCS_INIT = 0,
     OCS_DOWN = 1,
     OCS_UP = 2,

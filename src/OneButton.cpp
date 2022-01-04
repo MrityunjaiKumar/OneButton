@@ -93,6 +93,9 @@ void OneButton::attachClick(parameterizedCallbackFunction newFunction, void *par
   _clickFuncParam = parameter;
 } // attachClick
 
+void OneButton::detachClick(){
+  _paramClickFunc =  NULL;
+}
 
 // save function for doubleClick event
 void OneButton::attachDoubleClick(callbackFunction newFunction)
@@ -111,6 +114,9 @@ void OneButton::attachDoubleClick(parameterizedCallbackFunction newFunction, voi
 } // attachDoubleClick
 
 
+void OneButton::detachDoubleClick(){
+  _doubleClickFunc = NULL;
+}
 // save function for multiClick event
 void OneButton::attachMultiClick(callbackFunction newFunction)
 {
@@ -127,6 +133,10 @@ void OneButton::attachMultiClick(parameterizedCallbackFunction newFunction, void
   _maxClicks = max(_maxClicks, 100);
 } // attachMultiClick
 
+void OneButton::detachMultiClick(){
+  _paramMultiClickFunc=NULL;
+}
+
 
 // save function for longPressStart event
 void OneButton::attachLongPressStart(callbackFunction newFunction)
@@ -142,6 +152,10 @@ void OneButton::attachLongPressStart(parameterizedCallbackFunction newFunction, 
   _longPressStartFuncParam = parameter;
 } // attachLongPressStart
 
+void OneButton::detachLongPressStart(){
+  _paramLongPressStartFunc =NULL;
+  
+}
 
 // save function for longPressStop event
 void OneButton::attachLongPressStop(callbackFunction newFunction)
@@ -158,6 +172,10 @@ void OneButton::attachLongPressStop(parameterizedCallbackFunction newFunction, v
 } // attachLongPressStop
 
 
+void OneButton::detachLongPressStop(){
+  _paramLongPressStopFunc = NULL;
+  
+}
 // save function for during longPress event
 void OneButton::attachDuringLongPress(callbackFunction newFunction)
 {
@@ -172,6 +190,10 @@ void OneButton::attachDuringLongPress(parameterizedCallbackFunction newFunction,
   _duringLongPressFuncParam = parameter;
 } // attachDuringLongPress
 
+void OneButton::detachDuringLongPress(){
+  _paramDuringLongPressFunc = NULL;
+  
+}
 
 void OneButton::reset(void)
 {
